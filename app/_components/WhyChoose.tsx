@@ -22,15 +22,15 @@ export default function WhyChoose() {
   ];
 
   return (
-    <div className='flex flex-col items-center justify-center px-20 py-40'>
-      <h2 className='font-bold text-5xl text-slate-700'>Why Choose Meetingo?</h2>
-      <div className="flex justify-between gap-4 mt-14">
+    <div className='flex flex-col items-center justify-center px-10 md:px-20 py-10 md:py-40'>
+      <h2 className='font-bold text-2xl md:text-5xl text-slate-700'>Why Choose Meetingo?</h2>
+      <div className="flex flex-col md:flex-row justify-between gap-4 mt-14">
         {
           features.map((feature, index) => (
-            <div key={index} className='bg-[#FCFCFC] p-20 flex flex-col gap-2 items-center rounded-lg'>
+            <div key={index} className='bg-[#FCFCFC] p-10 md:p-20 flex flex-col gap-2 items-center rounded-lg'>
               <Image src={feature.icon} alt={feature.title} width={60} height={60}/>
-              <h2 className='font-bold text-xl text-slate-700'>{feature.title}</h2>
-              <p>{feature.description}</p>
+              <h2 className='font-bold text-lg md:text-xl text-slate-700'>{feature.title}</h2>
+              <p className='text-center'>{feature.description}</p>
             </div>
           ))
         }

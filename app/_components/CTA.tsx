@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function CTA() {
     return (
-        <div className='bg-[#E9F6F7] px-20 py-40 relative overflow-hidden'>
+        <div className='bg-[#E9F6F7] px-10 md:px-20 py-20 md:py-40 relative overflow-hidden'>
             {/* Gradient Circles */}
             <div className="absolute inset-0 flex justify-between items-center">
                 <div className="relative">
@@ -24,9 +24,9 @@ export default function CTA() {
                     <div className="w-20 h-20 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full absolute top-40 right-[-5%] animate-bounce duration-1000"></div>
                 </div>
             </div>
-            <div className='max-w-[40%] mx-auto flex flex-col items-center text-center gap-2 z-10'>
-                <h2 className='font-bold text-4xl text-slate-700'>Join Thousands of Users—For Free!</h2>
-                <p className='text-2xl text-slate-500'>Experience the freedom of hassle-free scheduling without paying a dime. Meetingo is here to make your life easier.</p>
+            <div className='max-w-[90%] md:max-w-[40%] mx-auto flex flex-col items-center text-center gap-2 z-10'>
+                <h2 className='font-bold text-2xl md:text-4xl text-slate-700'>Join Thousands of Users—For Free!</h2>
+                <p className='text-lg md:text-2xl text-slate-500'>Experience the freedom of hassle-free scheduling without paying a dime. Meetingo is here to make your life easier.</p>
             </div>
         </div>
     )
