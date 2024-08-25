@@ -45,12 +45,12 @@ export default function TermsConditions() {
 
         <h3 className="text-2xl font-semibold text-slate-700 mb-4">6. Limitation of Liability</h3>
         <p className="mb-4">
-          Meetingo is provided "as is" without any warranties, express or implied. We do not guarantee that our services will be error-free or uninterrupted. To the fullest extent permitted by law, Meetingo shall not be liable for any damages arising from your use of our platform.
+          Meetingo is provided &quot;as is&quot; without any warranties, express or implied. We do not guarantee that our services will be error-free or uninterrupted. To the fullest extent permitted by law, Meetingo shall not be liable for any damages arising from your use of our platform.
         </p>
 
         <h3 className="text-2xl font-semibold text-slate-700 mb-4">7. Changes to These Terms</h3>
         <p className="mb-4">
-          Meetingo reserves the right to update or modify these Terms and Conditions at any time. We will notify you of any changes by updating the "Effective Date" at the top of these terms. Your continued use of our platform after such changes constitutes your acceptance of the new terms.
+          Meetingo reserves the right to update or modify these Terms and Conditions at any time. We will notify you of any changes by updating the &quot;Effective Date&quot; at the top of these terms. Your continued use of our platform after such changes constitutes your acceptance of the new terms.
         </p>
 
         <h3 className="text-2xl font-semibold text-slate-700 mb-4">8. Governing Law</h3>

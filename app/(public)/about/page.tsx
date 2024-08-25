@@ -1,4 +1,5 @@
 import PublicLayout from '@/components/shared/PublicLayout';
+import Image from 'next/image';
 import React from 'react';
 
 export default function About() {
@@ -27,7 +28,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Team Member 1 */}
             <div className="text-center">
-              <img
+              <Image
                 src="/images/team-member-1.jpg"
                 alt="Team Member 1"
                 className="w-40 h-40 mx-auto rounded-full mb-4 shadow-md"
@@ -41,7 +42,7 @@ export default function About() {
 
             {/* Team Member 2 */}
             <div className="text-center">
-              <img
+              <Image
                 src="/images/team-member-2.jpg"
                 alt="Team Member 2"
                 className="w-40 h-40 mx-auto rounded-full mb-4 shadow-md"
@@ -55,7 +56,7 @@ export default function About() {
 
             {/* Team Member 3 */}
             <div className="text-center">
-              <img
+              <Image
                 src="/images/team-member-3.jpg"
                 alt="Team Member 3"
                 className="w-40 h-40 mx-auto rounded-full mb-4 shadow-md"
