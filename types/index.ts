@@ -1,4 +1,7 @@
-export interface Meeting {
+export interface Document{
+    id?: string;
+}
+export interface Meeting extends Document {
     businessId?: string,
     eventName?: string,
     duration: number,
@@ -8,8 +11,14 @@ export interface Meeting {
     createdBy?: string;
 }
 
-export interface User{
+export interface User extends Document {
     name?: string;
     email?: string;
     note?: string;
+}
+
+export interface BusinessInfo extends Document {
+    businessName: string;
+    email?: string;
+    userName?: string;
 }

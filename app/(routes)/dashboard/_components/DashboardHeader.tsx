@@ -11,28 +11,33 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from 'next/link';
 
 export default function DashboardHeader() {
   const { user } = useKindeBrowserClient();
 
   return (
-    <div className='p-4 px-20 flex justify-end items-center'>
+    <div className='p-4 px-4 md:px-20 flex justify-end items-center'>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <div className='flex items-center cursor-pointer'>
+          <div className='flex items-center cursor-pointer md:gap-2'>
             {user?.picture ? (
-              <Image src={user.picture} alt='User Avatar' width={40} height={40} className='rounded-full' />
+              <Image src={user.picture} alt='User Avatar' width={40} height={40} className='rounded-full w-10 h-10' />
             ) : (
               <div className='w-10 h-10 bg-gray-200 rounded-full' />
             )}
-            <ChevronDown className='ml-2' />
+            <ChevronDown  />
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end'>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
+          {/* <DropdownMenuItem>Profile</DropdownMenuItem> */}
+          <DropdownMenuItem>
+            <Link href='/dashboard/settings'>
+              Settings
+            </Link>
+          </DropdownMenuItem>
           <DropdownMenuItem>
             <LogoutLink>
               Logout

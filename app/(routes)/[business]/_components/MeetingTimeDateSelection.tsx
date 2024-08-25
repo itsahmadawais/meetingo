@@ -1,6 +1,6 @@
 'use client';
 
-import { CalendarArrowDown, Clock, Clock1, MapPin } from 'lucide-react';
+import { CalendarArrowDown, Clock, Clock1, Loader2, MapPin } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -9,8 +9,8 @@ import TimeDateSelection from './TimeDateSelection';
 import { Button } from '@/components/ui/button';
 import UserFormInfo from './UserFormInfo';
 import { User } from '@/types';
-import { doc, getFirestore, query, setDoc, getDocs, collection, where, Timestamp } from 'firebase/firestore';
-import { app } from '@/config/FirebaseConfig';
+import { doc, query, setDoc, getDocs, collection, where, Timestamp } from 'firebase/firestore';
+import { db } from '@/config/FirebaseConfig';
 import { toast } from 'sonner';
 import Plunk from '@plunk/node';
 import { render } from '@react-email/render';
@@ -29,6 +29,8 @@ export default function MeetimgTimeDateSelection({ eventInfo, businessInfo }: Me
   const [selectedTime, setSelectedTime] = useState<any>();
   const [step, setStep] = useState<number>(1);
   const [userInfo, setuserInfo] = useState<User | undefined>(undefined);
+
+  const [isScheduling, setIsScheduling] = useState<boolean>(false);
 
   const [previousBooking, setPreviousBooking] = useState<any[]>([]);
 
@@ -51,12 +53,13 @@ export default function MeetimgTimeDateSelection({ eventInfo, businessInfo }: Me
     setTimeSlots(slots);
   };
 
-  const onDateChange = (d: any) => {
+  const onDateChange = async (d: any) => {
     setDate(d);
+    setSelectedTime(undefined);
     const day = format(d, 'EEEE');
     if (businessInfo.daysAvailable?.[day]) {
       setEnableTimeSlot(true);
-      getPrevEventBooking(d);
+      await getPrevEventBooking(d);
     } else {
       setEnableTimeSlot(false);
     }
@@ -78,8 +81,6 @@ export default function MeetimgTimeDateSelection({ eventInfo, businessInfo }: Me
     setuserInfo(user);
   }
 
-  const db = getFirestore(app);
-
   const onScheduleEvent = async () => {
     if (userInfo?.email && userInfo?.name) {
       const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -89,8 +90,8 @@ export default function MeetimgTimeDateSelection({ eventInfo, businessInfo }: Me
         return;
       }
       setIsValid(true);
-
       try {
+        setIsScheduling(true);
         const docId = Date.now().toString();
         await setDoc(doc(db, 'ScheduledMeetings', docId), {
           businessName: businessInfo.businessName,
@@ -111,6 +112,8 @@ export default function MeetimgTimeDateSelection({ eventInfo, businessInfo }: Me
       } catch (error) {
         console.error('Error scheduling meeting:', error);
         toast('Failed to schedule meeting. Please try again.');
+      } finally{
+        setIsScheduling(false);
       }
     } else {
       toast('User email is required.');
@@ -142,20 +145,22 @@ export default function MeetimgTimeDateSelection({ eventInfo, businessInfo }: Me
       // Query Firestore
       const q = query(
         collection(db, 'ScheduledMeetings'),
-        where('selectedDate', '>=', startOfDayTimestamp),
-        where('selectedDate', '<=', endOfDayTimestamp),
+        // where('selectedDate', '>=', startOfDayTimestamp),
+        // where('selectedDate', '<=', endOfDayTimestamp),
+        where('formattedDate', '==', format(date_!, 'PPP')),
         where('eventId', '==', eventInfo.id)
       );
 
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.empty) {
+        setPreviousBooking([]);
         console.log('No previous bookings found.');
         return;
       }
 
       // Log for debugging
-      console.log('Query Snapshot:', querySnapshot.docs.map(doc => doc.data()));
+      console.log('Booked Slots:', querySnapshot.docs.map(doc => doc.data()));
 
       const bookings = querySnapshot.docs.map(doc => doc.data());
       setPreviousBooking(prev => [...prev, ...bookings]);
@@ -255,6 +260,7 @@ export default function MeetimgTimeDateSelection({ eventInfo, businessInfo }: Me
             onClick={onScheduleEvent}
             disabled={!(userInfo?.email && userInfo?.name)}
           >
+            {isScheduling && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Schedule
           </Button>
         }

@@ -1,10 +1,11 @@
 'use client';
-import { LogoutLink, useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
+import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
 import React, { useEffect, useState } from 'react'
 import { doc, getFirestore, getDoc } from 'firebase/firestore';
-import { app } from '@/config/FirebaseConfig';
+import { db } from '@/config/FirebaseConfig';
 import { useRouter } from 'next/navigation';
 import MeetingType from './meeting-type/page';
+import Loader from '@/components/shared/Loader';
 
 export default function Dashboard() {
   // Get User From Kind
@@ -13,8 +14,6 @@ export default function Dashboard() {
   const [loading, setLoading] = useState<boolean>(true);
 
   const router = useRouter();
-
-  const db = getFirestore(app);
 
   useEffect(() => {
     user && isBusinessRegistered();
@@ -29,18 +28,19 @@ export default function Dashboard() {
       setLoading(false);
     } else {
       console.log('No such document found!');
-      setLoading(false);
       router.replace('/create-business');
     }
   };
 
-  if (loading) {
-    return <h2>Loading</h2>
-  }
 
   return (
     <div>
-      <MeetingType />
+      {
+        loading ?
+          <Loader />
+          :
+          <MeetingType />
+      }
     </div>
   )
 }
