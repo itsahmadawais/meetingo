@@ -14,7 +14,7 @@ export default function About() {
         <section className="text-center py-16 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white rounded-lg shadow-lg px-4 md:px-0">
           <h1 className="text-2xl md:text-6xl font-extrabold mb-4">About Meetingo</h1>
           <p className="text-lg md:text-2xl max-w-3xl mx-auto leading-relaxed">
-            Say goodbye to scheduling chaos! At Meetingo, we turn your appointment hassles into high-fives with our magical scheduler. Because who said organizing your life couldn't be fun?
+            Say goodbye to scheduling chaos! At Meetingo, we turn your appointment hassles into high-fives with our magical scheduler. Because who said organizing your life couldn&apos;t be fun?
           </p>
         </section>
 
