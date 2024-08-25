@@ -41,18 +41,18 @@ export const Email = ({
             <Preview>Meetingo Update</Preview>
             <Body style={main}>
                 <Container>
-                    <Section style={logo}>
+                    {/* <Section style={logo}>
                         <Img src={`${baseUrl}/static/yelp-logo.png`} />
-                    </Section>
+                    </Section> */}
 
                     <Section style={content}>
-                        <Row>
+                        {/* <Row>
                             <Img
                                 style={image}
                                 width={620}
                                 src={`${baseUrl}/static/yelp-header.png`}
                             />
-                        </Row>
+                        </Row> */}
 
                         <Row style={{ ...boxInfos, paddingBottom: "0" }}>
                             <Column>
