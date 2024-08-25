@@ -1,4 +1,4 @@
-export default [
+const DaysList = [
   {
     day: 'Sunday'
   },
@@ -21,3 +21,5 @@ export default [
     day: 'Saturday'
   }
 ];
+
+export default DaysList;

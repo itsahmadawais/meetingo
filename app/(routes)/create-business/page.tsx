@@ -55,7 +55,7 @@ export default function CreateBusiness() {
     <div className='p-14 flex items-center flex-col gap-20 my-10'>
       <Image src='/logo.svg' width={200} height={200} alt='logo' />
       <div className='flex flex-col items-center gap-4 max-w-3xl'>
-        <h2 className='text-4xl font-bold'>What's your business name?</h2>
+        <h2 className='text-4xl font-bold'>What&apos;s your business name?</h2>
         <p className='text-slate-500'>You can always change this later from settings.</p>
         <div className='w-full'>
           <label className='text-slate-400'>Team Name</label>

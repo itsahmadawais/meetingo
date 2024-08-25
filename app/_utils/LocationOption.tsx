@@ -1,4 +1,4 @@
-export default [
+const LocationOption = [
     {
         name: 'Zoom',
         icon: '/zoom.png'
@@ -16,3 +16,5 @@ export default [
         icon: '/other.png'
     }
 ];
+
+export default LocationOption;
